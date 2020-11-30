@@ -1,4 +1,4 @@
-package khan.academy.appiumserverconfig;
+package com.appiumserverconfig;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -6,8 +6,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.UnknownHostException;
+import java.util.concurrent.TimeUnit;
 
-public class LaunchAppiumServer {
+import com.utils.BaseClass;
+
+import io.appium.java_client.service.local.AppiumDriverLocalService;
+import io.appium.java_client.service.local.AppiumServerHasNotBeenStartedLocallyException;
+import io.appium.java_client.service.local.AppiumServiceBuilder;
+
+public class LaunchAppiumServer extends BaseClass {
 
 	private static AppiumDriverLocalService appiumservice;
 
@@ -23,9 +30,9 @@ public class LaunchAppiumServer {
 
 		if ((checkIfServerIsRunnning(Integer.parseInt(readProperties().get("appiumPort").toString())))) {
 			String[] cmd = { "killall", "node" };
-			// process = new ProcessBuilder(cmd).start();
-			// process.waitFor(180, TimeUnit.SECONDS);
-			// printResults(process);
+			process = new ProcessBuilder(cmd).start();
+			process.waitFor(180, TimeUnit.SECONDS);
+			printResults(process);
 			appiumservice.start();
 			System.out.println("server started");
 		} else {
@@ -36,6 +43,9 @@ public class LaunchAppiumServer {
 		return appiumservice;
 	}
 
+	
+	
+	
 	public static void printResults(Process process1) throws IOException {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(process1.getInputStream()));
 		String line = "";
@@ -44,12 +54,17 @@ public class LaunchAppiumServer {
 		}
 	}
 
+	
+	
 	public static void stopServer(AppiumDriverLocalService service) {
 		appiumservice.stop();
 		System.out.println("service stoped");
 	}
+	
+	
+	
 
-	public static boolean checkIfServerIsRunnning(int port) {
+	public static boolean checkIfServerIsRunnning(int port) throws IOException {
 
 		boolean isServerRunning = false;
 		ServerSocket serverSocket;
@@ -68,6 +83,7 @@ public class LaunchAppiumServer {
 			isServerRunning = true;
 
 		} finally {
+			
 			serverSocket = null;
 		}
 		return isServerRunning;
