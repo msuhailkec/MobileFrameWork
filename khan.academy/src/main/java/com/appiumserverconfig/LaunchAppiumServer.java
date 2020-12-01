@@ -26,7 +26,7 @@ public class LaunchAppiumServer extends BaseClass {
 		appiumservice = AppiumDriverLocalService.buildService(
 				new AppiumServiceBuilder().usingDriverExecutable(new File(readProperties().getProperty("nodePath")))
 						.withAppiumJS(new File(readProperties().getProperty("pathAppiumMainJs")))
-						.withIPAddress("0.0.0.0").usingPort(8888));
+						.withIPAddress("0.0.0.0").usingPort(4723));
 
 		if ((checkIfServerIsRunnning(Integer.parseInt(readProperties().get("appiumPort").toString())))) {
 			String[] cmd = { "killall", "node" };
