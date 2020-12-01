@@ -38,11 +38,7 @@ public class LoginTest {
 
 
 	@BeforeMethod
-	public void setUp(Method method) throws Exception {
-//		service = LaunchAppiumServer.startServer();
-//		driver = Capabilities.setCapabilities_Android();
-//		
-//		loginPOM = new LoginPOM(driver); 
+	public void setUp(Method method){
 		tcName = method.getName();
 		
 	}
@@ -56,17 +52,7 @@ public class LoginTest {
 
 	
 	
-	@Test(priority =2)
-	public void validLoginTest() throws Exception  {
-		
-		loginPOM.sendUserName("msuhail.kec@gmail.com");
-		loginPOM.sendPassword("Nimda1234");
-		loginPOM.clickSignIn(); 
-		AssertJUnit.assertEquals(true, loginPOM.userLogedIn());
-		Thread.sleep(5000);
-		screenShot.captureScreenShot(tcName);
-		
-	}
+
 	@Test(priority =1)
 	public void invalidLogin() throws Exception  {
 		
@@ -80,6 +66,18 @@ public class LoginTest {
 		loginPOM.sendPassword("Nimda1234sdda");
 		loginPOM.clickSignIn(); 
 		AssertJUnit.assertEquals(true, loginPOM.invalidLogin());
+		Thread.sleep(5000);
+		screenShot.captureScreenShot(tcName);
+		
+	}
+	
+	@Test(priority =2)
+	public void validLoginTest() throws Exception  {
+		
+		loginPOM.sendUserName("msuhail.kec@gmail.com");
+		loginPOM.sendPassword("Nimda1234");
+		loginPOM.clickSignIn(); 
+		AssertJUnit.assertEquals(true, loginPOM.userLogedIn());
 		Thread.sleep(5000);
 		screenShot.captureScreenShot(tcName);
 		
