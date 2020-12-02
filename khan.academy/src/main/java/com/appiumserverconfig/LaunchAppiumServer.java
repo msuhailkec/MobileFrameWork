@@ -28,7 +28,7 @@ public class LaunchAppiumServer extends BaseClass {
 						.withAppiumJS(new File(readProperties().getProperty("pathAppiumMainJs")))
 						.withIPAddress("0.0.0.0").usingPort(4723));
 
-		if ((checkIfServerIsRunnning(Integer.parseInt(readProperties().get("appiumPort").toString())))) {
+		if (!(checkIfServerIsRunnning(Integer.parseInt(readProperties().get("appiumPort").toString())))) {
 			String[] cmd = { "killall", "node" };
 			process = new ProcessBuilder(cmd).start();
 			process.waitFor(180, TimeUnit.SECONDS);

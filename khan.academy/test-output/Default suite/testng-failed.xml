@@ -5,9 +5,9 @@
     <classes>
       <class name="android.LoginTest">
         <methods>
-          <include name="validLoginTest"/>
+          <include name="invalidLogin"/>
           <include name="tearDown"/>
-          <include name="validSuccessfulLogoutTest"/>
+          <include name="screenShot"/>
           <include name="setUp"/>
           <include name="setUpBeforeClass"/>
         </methods>

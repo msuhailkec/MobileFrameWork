@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
-  <test thread-count="5" name="Default test(failed)">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]">
+  <listeners>
+    <listener class-name="com.report.ExtentReporterNG"/>
+  </listeners>
+  <test thread-count="5" name="Test(failed)">
     <classes>
       <class name="android.LoginTest">
         <methods>
           <include name="invalidLogin"/>
+          <include name="validLoginTest"/>
           <include name="tearDown"/>
+          <include name="validSuccessfulLogoutTest"/>
           <include name="screenShot"/>
           <include name="setUp"/>
           <include name="setUpBeforeClass"/>
         </methods>
       </class> <!-- android.LoginTest -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->
